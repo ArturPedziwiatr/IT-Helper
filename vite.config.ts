@@ -8,9 +8,13 @@ export default defineConfig({
     alias: {
       '@enum': path.resolve(__dirname, 'src/enums'),
       '@view': path.resolve(__dirname, 'src/views'),
-      '@composable': path.resolve(__dirname, 'src/composables'),
+      '@store': path.resolve(__dirname, 'src/stores'),
+      '@constant': path.resolve(__dirname, 'src/constants'),
       '@component': path.resolve(__dirname, 'src/component'),
       '@interface': path.resolve(__dirname, 'src/interface'),
+      '@composable': path.resolve(__dirname, 'src/composables'),
+
+      '@Tree': path.resolve(__dirname, 'src/structure/Tree.ts'),
     },
   },
   plugins: [

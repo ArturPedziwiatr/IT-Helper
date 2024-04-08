@@ -23,9 +23,13 @@
     "paths": {
       "@enum/*": ["./src/enums/*"],
       "@view/*": ["./src/views/*"],
+      "@store/*": ["./src/stores/*"],
       "@component/*": ["./src/components/*"],
       "@interface/*": ["./src/interfaces/*"],
+      "@constant/*": ["./src/constants/*"],
       "@composable/*": ["./src/composables/*"],
+
+      "@Tree": ["./src/structure/Tree.ts"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "electron"],

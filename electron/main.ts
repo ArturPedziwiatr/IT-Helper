@@ -3,9 +3,8 @@ import path from 'node:path'
 import { app, BrowserWindow } from 'electron'
 import shortcutRegister from './shortcutRegister'
 
-import './plugins/path'
 import './plugins/fs-extra'
-import './plugins/defaultSettings'
+import './plugins/path'
 
 process.env.DIST = path.join(__dirname, '../dist')
 process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.env.DIST, '../public')

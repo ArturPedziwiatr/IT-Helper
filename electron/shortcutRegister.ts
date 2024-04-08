@@ -28,7 +28,7 @@ export default function shortcutRegister(mainWindow: BrowserWindow) {
           parent: mainWindow,
           modal: true,
           show: false,
-          frame: true,
+          frame: false,
           alwaysOnTop: true,
           webPreferences: {
             disableHtmlFullscreenWindowResize: false,

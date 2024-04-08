@@ -1,37 +1,38 @@
+import { AccessMode } from '@enum/AccessMode';
 import { IpcMessage } from '@enum/IpcMessage';
-import { WriteFileOptions } from 'fs-extra';
+import { Dir, OpenDirOptions, WriteFileOptions } from 'fs-extra';
 
 export default function useFileSystem() {
 
-  const writeFile = (
-    path: string, data: string | NodeJS.ArrayBufferView, options?: WriteFileOptions
-  ) => sendIpcMessage(IpcMessage.WRITE_FILE, path, data, options);
+  const writeFile = (path: string, data: string | NodeJS.ArrayBufferView, options?: WriteFileOptions) =>
+    window.ipcRenderer.invoke(IpcMessage.WRITE_FILE, path, data, options);
 
-  const readFile = (
-    path: string, options?: BufferEncoding | null | undefined
-  ) => sendIpcMessage(IpcMessage.READ_FILE, path, { encoding: options });
+  const readFile = (path: string, options?: BufferEncoding ) =>
+    window.ipcRenderer.invoke(IpcMessage.READ_FILE, path, { encoding: options }) as Promise<string | NodeJS.ArrayBufferView>;
 
-  const readDir = (
-    path: string, options?: BufferEncoding | null | undefined
-  ): Promise<string[]|Buffer[]> => sendIpcMessage(IpcMessage.READ_DIR, path, { encoding: options }) as Promise<string[]|Buffer[]>;
+  const readDir = (path: string, options?: BufferEncoding ) =>
+    window.ipcRenderer.invoke(IpcMessage.READ_DIR, path, { encoding: options }) as Promise<string[]|Buffer[]>;
   
-  const isDir = (path: string): Promise<boolean> => 
-    sendIpcMessage(IpcMessage.IS_DIRECTORY, path) as Promise<boolean>;
-
-  const pathExists = (path: string): Promise<boolean> => sendIpcMessage(IpcMessage.PATH_EXISTS, path) as Promise<boolean>;
+  const openDir = (path: string, options?: OpenDirOptions ) =>
+    window.ipcRenderer.invoke(IpcMessage.OPEN_DIR, path, options) as Promise<Dir>;
   
-  const sendIpcMessage = (channel: IpcMessage, ...args: any[]) =>
-    new Promise((resolve, reject) => {
-      window.ipcRenderer.send(channel, ...args)
-      window.ipcRenderer.on('ready', (_event, ready) => resolve(ready))
-      window.ipcRenderer.on('error', (_event, error) => reject(error))
-    });
+  const isDir = (path: string) => 
+    window.ipcRenderer.invoke(IpcMessage.IS_DIRECTORY, path) as Promise<boolean>;
+
+  const pathExists = (path: string) =>
+    window.ipcRenderer.invoke(IpcMessage.PATH_EXISTS, path) as Promise<boolean>;
+
+  const accessDir = (path: string, mode: AccessMode) =>
+    window.ipcRenderer.invoke(IpcMessage.CHECK_ACCESS, path, mode) as Promise<boolean>;
+
 
   return {
     isDir,
     readDir,
+    openDir,
     readFile,
     writeFile,
+    accessDir,
     pathExists,
   }
 }

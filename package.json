@@ -11,6 +11,8 @@
     "@types/fs-extra": "^11.0.4",
     "fs-extra": "^11.2.0",
     "path": "^0.12.7",
+    "pinia": "^2.1.7",
+    "ts-deepmerge": "^7.0.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

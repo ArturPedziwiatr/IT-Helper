@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount } from 'vue';
+import { Routes } from '@enum/Routes';
 import { IpcMessage } from '@enum/IpcMessage';
+import { onMounted, onBeforeUnmount } from 'vue';
+import { useFolderStructureStore } from '@store/FolderStructure.store';
 
 const closeWindow = () => {
-  window.ipcRenderer.send(IpcMessage.CLOSE_PROJECT_MANGER)
+  window.ipcRenderer.send(IpcMessage.CLOSE_DIALOG, Routes.PROJECT_MANAGER)
 }
 
 const onKeyDown = (e: KeyboardEvent) => {
@@ -19,6 +21,10 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeyDown);
   window.removeEventListener('blur', closeWindow);
 })
+console.log(useFolderStructureStore().getFolder)
+
 </script>
 
-<template>Dupa chuj 123</template>
+<template>
+  Dupa chuj 123
+</template>

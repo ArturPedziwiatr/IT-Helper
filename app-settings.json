@@ -1,6 +1,13 @@
 {
-  "projectPath": "asd",
-  "projectTypes": [
-    "package.json"
-  ]
+  "projectManager": {
+    "projectPath": "E:\\Projects",
+    "depth": 2,
+    "projectTypes": [
+      "package.json"
+    ],
+    "ignorePaths": [
+      "node_modules",
+      "\\\\gsdpl-dev-01\\RestApiTmp\\"
+    ]
+  }
 }
