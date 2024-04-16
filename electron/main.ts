@@ -2,9 +2,13 @@ import utils from './utils'
 import path from 'node:path'
 import { app, BrowserWindow } from 'electron'
 import shortcutRegister from './shortcutRegister'
+import AutoLunch from 'auto-launch';
+import electronSettings from 'electron-settings'
 
-import './plugins/fs-extra'
+import './plugins/exec'
 import './plugins/path'
+import './plugins/settings'
+import './plugins/fs-extra'
 
 process.env.DIST = path.join(__dirname, '../dist')
 process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.env.DIST, '../public')
@@ -12,9 +16,23 @@ process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.
 
 let win: BrowserWindow | null
 
+const appLauncher = new AutoLunch({
+  name: 'MyApp',
+  path: app.getPath('exe'),
+})
+
+if (electronSettings.getSync('main.autoLaunch')) {
+  appLauncher.isEnabled().then(isEnabled => {
+    if (!isEnabled) appLauncher.enable();
+  });
+} else {
+  appLauncher.disable();
+}
+
 function createWindow() {
   win = new BrowserWindow({
     show: false,
+    frame: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },

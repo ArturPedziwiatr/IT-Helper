@@ -3,4 +3,5 @@ export interface IFolderStructure {
   path: string
   version?: string
   ifProject: boolean
+  active: boolean
 }

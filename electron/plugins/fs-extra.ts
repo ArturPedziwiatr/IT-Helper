@@ -39,10 +39,13 @@ ipcMain.handle(IpcMessage.CHECK_ACCESS,
   (_event, path: PathLike, mode: AccessMode) => accessSync(path, convertAccesModeToInt(mode))
 )
 
+ipcMain.handle(IpcMessage.FIX_CONFIG,
+  (_event, path: PathLike, mode: AccessMode) => accessSync(path, convertAccesModeToInt(mode))
+)
+
 const convertAccesModeToInt = (mode: AccessMode) => {
   switch (mode) {
     case AccessMode.READ:
-      console.log(constants.R_OK)
       return constants.R_OK
     case AccessMode.WRITE:
       return constants.W_OK

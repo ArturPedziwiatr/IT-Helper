@@ -5,12 +5,11 @@ import useFileSystem from '@composable/FileSystem';
 import { IFolderStructure } from '@interface/IFolderStructure';
 import { useAppSetingsStore } from '@store/AppSettings.store';
 
-
 export const useFolderStructureStore = defineStore({
   id: 'folder-structure',
   state: () => ({
-    folder: new TreeNode({ path: '', name: '', ifProject: false }),
-    settings: useAppSetingsStore().getProjectManagerSettings(),
+    folder: new TreeNode({ path: '', name: '', ifProject: false, active: false }),
+    settings: useAppSetingsStore().getProjectManager,
     fs: useFileSystem(),
     path: usePath(),
     pending: false
@@ -21,6 +20,19 @@ export const useFolderStructureStore = defineStore({
   },
   actions: {
     async initialize() {
+      await this.createFolderStructure()
+    },
+
+    changeState(path: string, state?: boolean) {
+      const leaf = this.folder.find((leaf) => leaf.path === path)
+      if (leaf) leaf.data.active = state ? state : !leaf.data.active
+    },
+
+    getLeafByPath(path: string) {
+      return this.folder.find((leaf) => leaf.path === path)
+    },
+
+    async createFolderStructure() {
       try {
         if (!await this.fs.isDir(this.settings.projectPath)) return []
         this.pending = true
@@ -56,6 +68,7 @@ export const useFolderStructureStore = defineStore({
                 name,
                 path,
                 version,
+                active: false,
                 ifProject: true,
               }
             }
@@ -70,7 +83,6 @@ export const useFolderStructureStore = defineStore({
       const result = new Array<IFolderStructure>()
 
       for ( const name of await this.fs.readDir(path)) {
-        console.log(name)
         if (typeof name === 'string' && !this.settings.ignorePaths.includes(name)) {
           try {
             const folderPath = await this.path.join(path, name)
@@ -79,6 +91,7 @@ export const useFolderStructureStore = defineStore({
                 name,
                 path: folderPath,
                 ifProject: false,
+                active: false,
               })
             }
           } catch (_error) {}

@@ -1,5 +1,5 @@
-import { AccessMode } from '@enum/AccessMode';
-import { IpcMessage } from '@enum/IpcMessage';
+import { AccessMode } from '@/enums/AccessMode';
+import { IpcMessage } from '@/enums/IpcMessage';
 import { Dir, OpenDirOptions, WriteFileOptions } from 'fs-extra';
 
 export default function useFileSystem() {

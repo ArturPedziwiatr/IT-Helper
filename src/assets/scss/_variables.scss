@@ -1,0 +1,31 @@
+$color-primary: var(--primary-color);
+
+$color-bg-primary: var(--color-bg-primary);
+$color-bg-secondary: var(--color-bg-secondary);
+
+$color-text: var(--color-text);
+$color-active-text: var(--color-active-text);
+
+$button-size: 40px;
+$close-width: calc($button-size / 10);
+
+$primary-font-size: 12px;
+
+:root {
+  --primary-color: var(--primary);
+  --color-bg-primary: var(--color-bg-primary-dark);
+  --color-bg-secondary: var(--color-bg-secondary-dark);
+  --color-text: var(--color-text-dark);
+  --color-active-text: var(--color-active-text-dark);
+
+  --primary: #f8526e;
+
+  --color-bg-primary-light: #f8526e;
+  --color-bg-primary-dark: #2f2f2f;
+  --color-bg-secondary-light: #212121;
+  --color-bg-secondary-dark: #212121;
+  --color-text-light: #ececec;
+  --color-text-dark: #ececec;
+  --color-active-text-light: #cdcdcd;
+  --color-active-text-dark: #cdcdcd;
+}

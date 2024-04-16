@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import path from 'node:path'
 import electron from 'vite-plugin-electron/simple'
 import vue from '@vitejs/plugin-vue'
+import sass from 'sass'
 
 export default defineConfig({
   resolve: {
@@ -13,8 +14,16 @@ export default defineConfig({
       '@component': path.resolve(__dirname, 'src/component'),
       '@interface': path.resolve(__dirname, 'src/interface'),
       '@composable': path.resolve(__dirname, 'src/composables'),
-
+      
       '@Tree': path.resolve(__dirname, 'src/structure/Tree.ts'),
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        implementation: sass,
+      },
     },
   },
   plugins: [

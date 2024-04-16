@@ -8,7 +8,8 @@ const createPath = (route: Routes) => `/${route}`
 const routes: RouteRecordRaw[] = [
   {
     path: createPath(Routes.MAIN),
-    component: Settings,
+    // component: Settings,
+    component: ProjectManager,
   },
   {
     path: createPath(Routes.PROJECT_MANAGER),

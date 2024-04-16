@@ -1,6 +1,12 @@
 {
+  "main": {
+    "theme": "dark",
+    "color": "#f8526e"
+  },
   "projectManager": {
-    "projectPath": "E:\\Projects",
+    "projectPath": "/home/apedziwiatr/optimus/Projects",
+    "exec": "code",
+    "adminMode": false,
     "depth": 2,
     "projectTypes": [
       "package.json"

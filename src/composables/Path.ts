@@ -1,4 +1,4 @@
-import { IpcMessage } from '@enum/IpcMessage';
+import { IpcMessage } from '@/enums/IpcMessage';
 
 export default function usePath() {
   const join = async (...paths: string[]) =>

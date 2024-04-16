@@ -2,7 +2,7 @@
 import { Routes } from '@enum/Routes';
 import { IpcMessage } from '@enum/IpcMessage';
 import { onMounted, onBeforeUnmount } from 'vue';
-import { useFolderStructureStore } from '@store/FolderStructure.store';
+import TreeStructure from '@/components/projectManager/TreeStructure.vue';
 
 const closeWindow = () => {
   window.ipcRenderer.send(IpcMessage.CLOSE_DIALOG, Routes.PROJECT_MANAGER)
@@ -14,17 +14,18 @@ const onKeyDown = (e: KeyboardEvent) => {
 
 onMounted(() => {
   window.addEventListener('keydown', onKeyDown);
-  window.addEventListener('blur', closeWindow);
+  // window.addEventListener('blur', closeWindow);
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeyDown);
-  window.removeEventListener('blur', closeWindow);
+  // window.removeEventListener('blur', closeWindow);
 })
-console.log(useFolderStructureStore().getFolder)
 
 </script>
 
 <template>
-  Dupa chuj 123
+  <div>
+    <TreeStructure />
+  </div>
 </template>

@@ -1,5 +1,5 @@
 {
-  "name": "electron-vite-project",
+  "name": "it-helper",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -8,15 +8,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/fs-extra": "^11.0.4",
+    "auto-launch": "^5.0.6",
+    "electron-settings": "^4.0.3",
     "fs-extra": "^11.2.0",
+    "oh-vue-icons": "^1.0.0-rc3",
     "path": "^0.12.7",
     "pinia": "^2.1.7",
-    "ts-deepmerge": "^7.0.0",
+    "sass": "^1.74.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@types/auto-launch": "^5.0.5",
+    "@types/fs-extra": "^11.0.4",
+    "@types/lodash": "^4.17.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "electron": "^29.1.4",
     "electron-builder": "^24.13.3",

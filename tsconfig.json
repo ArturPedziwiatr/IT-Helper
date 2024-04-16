@@ -28,10 +28,11 @@
       "@interface/*": ["./src/interfaces/*"],
       "@constant/*": ["./src/constants/*"],
       "@composable/*": ["./src/composables/*"],
-
+      
       "@Tree": ["./src/structure/Tree.ts"],
+      "@/*": ["./src/*"],
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "electron"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "electron", "src/**/*d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

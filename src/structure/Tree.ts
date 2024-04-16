@@ -16,6 +16,17 @@ export class TreeNode<T> {
       return child;
   }
 
+  find(callback: (leaf: T) => boolean): TreeNode<T> | null {
+    if (callback(this.data)) return this;
+    
+    for (const child of this.children) {
+      const result = child.find(callback);
+      if (result !== null) return result;
+    }
+
+    return null;
+  }
+
   remove() {
     if (this.parent !== null) {
       const index = this.parent.children.indexOf(this);
@@ -27,6 +38,8 @@ export class TreeNode<T> {
       child.remove();
     }
   }
+
+
 
   getFinalChildren(): TreeNode<T>[] {
     const leaves: TreeNode<T>[] = [];
@@ -41,5 +54,13 @@ export class TreeNode<T> {
 
     traverse(this);
     return leaves;
+  }
+
+  getRoot(): TreeNode<T> {
+    let node: TreeNode<T> = this;
+    while (node.parent !== null) {
+      node = node.parent;
+    }
+    return node;
   }
 }
